@@ -2,39 +2,38 @@ package unittest.testdoubles;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 import unittest.repository.Repository;
 import unittest.service.DataService;
 
-import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.assertj.core.api.Assertions.assertThat;
 
 
 @RunWith(MockitoJUnitRunner.class)
 public class DataServiceUnitTestWithCaptor {
 
     @InjectMocks
-    DataService testee;
+    DataService dataService;
 
     @Mock
     private Repository<String> mockRepository;
 
     @Test
     public void test() {
-        // Given
-        //Repository<String> mockRepository = Mockito.mock(Repository.class);
-        //DataService testee = new DataService(mockRepository);
+        dataService.saveAndLoad("Something1");
 
-        String saveData = "some string";
+        ArgumentCaptor<String> captor= ArgumentCaptor.forClass(String.class);
+        verify(mockRepository,times(1)).save(captor.capture());
+       //verify(mockRepository,times(1)).load();
 
-        Mockito.when(mockRepository.load()).thenReturn("some string");
-        // When
-        String loaded = testee.saveAndLoad(saveData);
+        String parameter = captor.getValue();
 
+        assertThat("Something1a").isEqualTo(parameter);
 
-        // loaded will be null, the test will fail
-        assertEquals(saveData, loaded);
     }
 }

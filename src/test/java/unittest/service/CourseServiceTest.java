@@ -29,6 +29,6 @@ public class CourseServiceTest {
         List<CourseDetails> expectedCourses = Arrays.asList(new CourseDetails(1,"Course 1"));
         when(courseRepository.findAll()).thenReturn(Arrays.asList(new Course(1,"Course 1")));
         courseService.getAllCourses().toArray();
-       assertArrayEquals(courseService.getAllCourses().toArray(), expectedCourses.toArray());
+        assertArrayEquals(courseService.getAllCourses().toArray(), expectedCourses.toArray());
     }
 }

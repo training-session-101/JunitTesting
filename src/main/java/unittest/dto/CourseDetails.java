@@ -22,7 +22,7 @@ public class CourseDetails {
     public CourseDetails() {
     }
 
-    @Override
+    /*@Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -34,7 +34,7 @@ public class CourseDetails {
     @Override
     public int hashCode() {
         return Objects.hash(courseId, courseName);
-    }
+    }*/
 
     public CourseDetails(Integer courseId, String courseName) {
         this.courseId = courseId;

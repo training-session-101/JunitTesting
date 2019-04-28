@@ -15,7 +15,7 @@ public class DataService {
     }
 
     public String saveAndLoad(String string) {
-        stringRepository.save(string);
+        stringRepository.save(string+"a");
         return stringRepository.load();
     }
 }

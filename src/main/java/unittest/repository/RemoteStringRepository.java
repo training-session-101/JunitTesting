@@ -2,14 +2,16 @@ package unittest.repository;
 
 
 public class RemoteStringRepository implements Repository<String> {
+    private String object;
+
+
     @Override
     public void save(String object) {
-        // Make a POST call to some API
+       this.object=object;
     }
 
     @Override
     public String load() {
-        // Make a GET call to some API
-        return "the response";
+      return object;
     }
 }
